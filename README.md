@@ -1,0 +1,4 @@
+GMAM
+====
+
+GithubMultiAccountManager
