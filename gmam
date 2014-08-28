@@ -1,0 +1,54 @@
+#!/bin/sh
+
+function checkUser() {
+  cd ~/.gmam/
+  
+  
+}
+
+function install() {
+  if [ -e ~/.gmam/]; then
+    echo "gmam has already been installed."     
+  else
+    cd ~/
+    mkdir .gmam
+    cd .gmam
+    mkdir ssh-keys
+    touch userList
+    touch repos
+  fi
+
+}
+
+function add() {
+  echo -n "user name:"
+  read USERNAME
+  echo -n "email:"
+  read EMAIL
+
+  #checkUser
+
+  ssh-keygen -t rsa -C ${EMAIL} -f ${USERNAME}_rsa
+  cat ~/.gmam/ssh-keys/${USERNAME}_rsa.pub | xsel -bi
+
+    
+}
+
+
+if [ $# -eq 0 ]; then
+
+  echo "usage: hogehoge"
+  echo "install"
+  echo "add"
+  echo "use"
+  echo "remove"
+  echo "list"
+  echo "uninstall"
+
+else
+  if [ $1 = "add" ]; then
+    add
+  fi
+fi
+
+exit 0
